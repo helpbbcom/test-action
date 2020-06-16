@@ -31,6 +31,7 @@ jobs:
         labels: automated pr, stage2master integration
         reviewers: helpbbcom
         base: master
+        branch: stage
 
     - name: Check outputs
       run: |

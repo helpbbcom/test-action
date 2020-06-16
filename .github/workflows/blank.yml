@@ -16,24 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with: 
-        ref: stage
-
-    - name: Create Pull Request 
-      uses: peter-evans/create-pull-request@v2
+    - name: GitHub Pull Request Action
+      uses: repo-sync/pull-request@v2.2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-        commit-message: Integrate stage to master on release published
-        title: 'Stage to Master Integration'
-        body: |
-          Integrate stage to master on release published
-        labels: automated pr, stage2master integration
-        reviewers: helpbbcom
-        base: master
-        branch: stage
-
-    - name: Check outputs
-      run: |
-        echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}":
+        github_token: ${{ secrets.GITHUB_TOKEN }}

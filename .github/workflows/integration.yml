@@ -22,9 +22,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         source_branch: "stage"
         destination_branch: "master"
-        pr_title: "Integrating ${{ github.ref }} into master"
-        pr_body: ":repeat: *Integrating ${{ github.ref }} into master*"
+        pr_title: "Integrate stage into master"
+        pr_body: ":repeat: *Triggered by release ${{ github.ref }} to integrate stage into master*"
         pr_reviewer: "bbhelpcom"
-        pr_assignee: "bbhelpcom"
         pr_label: "release integration"
         

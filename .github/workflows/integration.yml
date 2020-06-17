@@ -12,18 +12,10 @@ on:
 jobs:
   integration:
     name: Stage Master Integration
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
 
-    env:
-      GITHUB_CONTEXT: ${{ github.event.pull_request.commits_url }}
-      run: echo "$GITHUB_CONTEXT"
-    
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Dump GitHub context
-      run: curl -o out.json ${{ github.event.pull_request.commits_url }}
-      
+    - uses: actions/checkout@v2  
     - name: GitHub Pull Request Action
       uses: repo-sync/pull-request@v2.2
       with:

@@ -16,10 +16,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ github.event.pull_request.commits_url }}
+        run: echo "$GITHUB_CONTEXT"
+    - run: curl -o out.json ${{ github.event.pull_request.commits_url }}
+      
     - name: GitHub Pull Request Action
       uses: repo-sync/pull-request@v2.2
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         source_branch: "stage"
         destination_branch: "master"
+        pr_title: "Integrating ${{ github.ref }} into master"
+        pr_body: ":repeat: *Integrating ${{ github.ref }} into master*"
+        pr_reviewer: "bbhelpcom"
+        pr_assignee: "bbhelpcom"
+        pr_label: "release integration"
         
